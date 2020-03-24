@@ -48,7 +48,7 @@ export const actions = {
     try {
       await axios
         .post(
-          "https://taislu-nuxt-skyline.netlify.com.netlify.com/.netlify/functions/index",
+          "https://taislu-nuxt-skyline.netlify.com/.netlify/functions/index",
           //"https://taislu-nuxt-skyline.netlify.com/.netlify/functions/stripe-test-charge",
           {
             stripeEmail: payload.stripeEmail,

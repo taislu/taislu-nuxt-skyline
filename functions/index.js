@@ -1,9 +1,9 @@
 require("dotenv").config();
 
-//const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY)
+const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY)
 
-import Stripe from "stripe";
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
+//import Stripe from "stripe";
+//const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
 const headers = {
   "Access-Control-Allow-Origin": "*",
@@ -11,6 +11,9 @@ const headers = {
 };
 
 exports.handler = async (event, context) => {
+
+  console.log("Hello Stripe ! ")
+
   if (!event.body || event.httpMethod !== "POST") {
     return {
       statusCode: 400,

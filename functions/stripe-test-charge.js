@@ -9,6 +9,8 @@ const headers = {
 };
 
 exports.handler = async (event, context) => {
+  console.log(`STRIPE_SECRET_KEY: ${process.env.STRIPE_SECRET_KEY}`)
+  console.log("event.body : ", event.body)
   if (!event.body || event.httpMethod !== "POST") {
     return {
       statusCode: 400,

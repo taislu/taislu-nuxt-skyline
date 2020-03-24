@@ -41,6 +41,7 @@ export const mutations = {
 };
 
 export const actions = {
+
   async postStripeFunction({ getters, commit }, payload) {
     commit("updateCartUI", "loading");
 
@@ -52,7 +53,8 @@ export const actions = {
           {
             stripeEmail: payload.stripeEmail,
             stripeAmt: Math.floor(getters.cartTotal * 100), //it expects the price in cents, as an integer
-            stripeToken: "tok_visa", //testing token, later we would use payload.data.token
+            //stripeToken: "tok_visa", //testing token, later we would use payload.data.token
+            stripeToken: payload.data.token,
             stripeIdempotency: uuidv1() //we use this library to create a unique id
           },
           {

@@ -24,7 +24,9 @@
       </table>
 
       <section class="payment">
+        <!-- enter payment details & pay with credit card -->
         <app-card />
+        
         <div class="total">
           <div class="caption">
             <p>

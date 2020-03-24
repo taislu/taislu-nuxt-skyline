@@ -69,7 +69,9 @@ export default {
   methods: {
     pay() {
       createToken().then(data => {
+        console.log("data : ", data)
         const stripeData = { data, stripeEmail: this.stripeEmail };
+        console.log("stripeData : ", stripeData)
         this.$store.dispatch("postStripeFunction", stripeData);
       });
     },

@@ -1,6 +1,8 @@
 require("dotenv").config();
 
-const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY)
+const stripe = new (require("stripe"))(process.env.STRIPE_SECRET_KEY)
+
+//const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY)
 
 //import Stripe from "stripe";
 //const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
@@ -41,6 +43,7 @@ exports.handler = async (event, context) => {
     };
   }
 
+  console.log("Hello Stripe Payment Processing !")
   // stripe payment processing begins here
   try {
     await stripe.customers

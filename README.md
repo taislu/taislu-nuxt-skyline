@@ -1,6 +1,4 @@
-## Build Setup
 
-```bash
 # install dependencies
 $ yarn install or npm install
 
@@ -13,4 +11,4 @@ $ yarn start or npm start
 
 # generate static project
 $ yarn generate or npm generate
-```
+

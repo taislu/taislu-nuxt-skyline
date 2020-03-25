@@ -44,16 +44,15 @@ export const actions = {
 
   async postStripeFunction({ getters, commit }, payload) {
     commit("updateCartUI", "loading");
-    console.log("payload.data.token : ", payload.data.token)
+    //console.log("payload.data.token : ", payload.data.token)
     try {
       await axios
         .post(
-          "https://taislu-nuxt-skyline.netlify.com/.netlify/functions/index",
-          //"https://taislu-nuxt-skyline.netlify.com/.netlify/functions/stripe-test-charge",
+          //"https://taislu-nuxt-skyline.netlify.com/.netlify/functions/index",
+          "https://taislu-nuxt-skyline.netlify.com/.netlify/functions/stripe-test-charge",
           {
             stripeEmail: payload.stripeEmail,
             stripeAmt: Math.floor(getters.cartTotal * 100), //it expects the price in cents, as an integer
-            //stripeToken: "tok_visa", //testing token, later we would use payload.data.token
             stripeToken: payload.data.token,
             stripeIdempotency: uuidv1() //we use this library to create a unique id
           },

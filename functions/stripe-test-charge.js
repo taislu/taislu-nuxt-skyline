@@ -1,7 +1,6 @@
 require("dotenv").config();
 
-import Stripe from "stripe";
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
+const stripe = new (require("stripe"))(process.env.STRIPE_SECRET_KEY)
 
 const headers = {
   "Access-Control-Allow-Origin": "*",
@@ -10,8 +9,9 @@ const headers = {
 
 exports.handler = async (event, context) => {
   
-  console.log(`STRIPE_SECRET_KEY: ${process.env.STRIPE_SECRET_KEY}`)
-  console.log("event.body : ", event.body)
+  console.log("Function : stripe-test-charge : handler running ! ")
+  console.log(`STRIPE_SECRET_KEY : ${process.env.STRIPE_SECRET_KEY}`)
+  
   if (!event.body || event.httpMethod !== "POST") {
     return {
       statusCode: 400,
@@ -22,8 +22,8 @@ exports.handler = async (event, context) => {
     };
   }
 
+  console.log("Parsing event.body data ! ")
   const data = JSON.parse(event.body);
-  console.log(data);
 
   if (!data.stripeToken || !data.stripeAmt || !data.stripeIdempotency) {
     console.error("Required information is missing.");
@@ -37,12 +37,14 @@ exports.handler = async (event, context) => {
     };
   }
 
+  console.log("Start Stripe Payment Processing !")
   // stripe payment processing begins here
   try {
     await stripe.customers
       .create({
         email: data.stripeEmail,
-        source: data.stripeToken
+        // only need id from tokoen object
+        source: data.stripeToken.id
       })
       .then(customer => {
         console.log(
@@ -62,7 +64,8 @@ exports.handler = async (event, context) => {
             }
           )
           .then(result => {
-            console.log(`Charge created: ${result}`);
+            //console.log(`Charge created: ${result}`);
+            console.log("Stripe Charge Created OK !")
           });
       });
 

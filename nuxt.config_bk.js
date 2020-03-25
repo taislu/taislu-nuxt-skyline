@@ -25,6 +25,15 @@ export default {
       }
     ],
     link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }]
+    /*
+    link: [
+      {
+        rel: "stylesheet",
+        href:
+          "https://fonts.googleapis.com/css?family=Montserrat:300,600|PT+Serif&display=swap"
+      }
+    ]
+    */
   },
   generate: {
     routes: dynamicRoutes

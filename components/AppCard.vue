@@ -76,7 +76,7 @@ export default {
       // See https://stripe.com/docs/api#errors for the error object.
       // More general https://stripe.com/docs/stripe.js#stripe-create-token.
       createToken().then(data => {
-        console.log("createToken : ", data)
+        //console.log("createToken : ", data)
         const stripeData = { data, stripeEmail: this.stripeEmail };
         //console.log("stripeData : ", stripeData)
         this.$store.dispatch("postStripeFunction", stripeData);

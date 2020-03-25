@@ -16,7 +16,7 @@
         class="stripe-card"
         id="card"
         :class="{ complete }"
-        stripe="pk_test_5ThYi0UvX3xwoNdgxxxTxxrG"
+        stripe="pk_test_JUC0NKeAkpHSIS519XVmrMaX00whd86Tfo"
         :options="stripeOptions"
         @change="complete = $event.complete"
       />
@@ -51,6 +51,8 @@ import { Card, createToken } from "vue-stripe-elements-plus";
 
 import { mapState } from "vuex";
 
+//update stripe="pk_test_JUC0NKeAkpHSIS519XVmrMaX00whd86Tfo"
+
 export default {
   components: { Card },
   computed: {
@@ -68,10 +70,15 @@ export default {
   },
   methods: {
     pay() {
+      // createToken returns a Promise which resolves in a result object with
+      // either a token or an error key.
+      // See https://stripe.com/docs/api#tokens for the token object.
+      // See https://stripe.com/docs/api#errors for the error object.
+      // More general https://stripe.com/docs/stripe.js#stripe-create-token.
       createToken().then(data => {
-        console.log("data : ", data)
+        //console.log("data : ", data)
         const stripeData = { data, stripeEmail: this.stripeEmail };
-        console.log("stripeData : ", stripeData)
+        //console.log("stripeData : ", stripeData)
         this.$store.dispatch("postStripeFunction", stripeData);
       });
     },

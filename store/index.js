@@ -44,7 +44,7 @@ export const actions = {
 
   async postStripeFunction({ getters, commit }, payload) {
     commit("updateCartUI", "loading");
-
+    console.log("payload.data.token : ", payload.data.token)
     try {
       await axios
         .post(
